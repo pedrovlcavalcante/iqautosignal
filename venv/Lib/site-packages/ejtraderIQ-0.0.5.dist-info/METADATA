@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: ejtraderIQ
+Version: 0.0.5
+Summary: IQ Option API for python
+Home-page: https://github.com/ejtraderLabs/ejtraderIQ
+Author: Emerson Pedroso
+Author-email: emerson@ejtrader.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: pylint
+Requires-Dist: requests
+Requires-Dist: websocket-client (==0.56)
+
+IQ Option API for python
+
+
