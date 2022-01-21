@@ -78,4 +78,4 @@ def profits(email, senha, valor):
     print('Fim da Lista')
 
 
-profits('pedrovitorl@gmail.com', 'infinity2008', 100)
+# profits('pedrovitorl@gmail.com', 'infinity2008', 100)
