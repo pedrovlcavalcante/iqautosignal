@@ -4,7 +4,7 @@ from iq import profits
 from threading import Thread
 
 app = Flask(__name__)
-
+app.secret_key = 'supersecret'
 # app.config.from_object(__name__)
 sess = Session()
 
