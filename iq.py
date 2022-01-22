@@ -76,6 +76,3 @@ def profits(email, senha, valor):
                         print("Não foi possível comprar")
                         break
     print('Fim da Lista')
-
-
-# profits('pedrovitorl@gmail.com', 'infinity2008', 100)
