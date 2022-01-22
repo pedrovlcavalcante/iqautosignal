@@ -7,7 +7,7 @@ from os import system
 # from iqoptionapi.iqoptionapi.stable_api import IQ_Option
 
 
-def profits(email, senha, valor):
+def profits(email, senha, valor, balance):
 
     sinais = lista_sinais()
 
@@ -16,7 +16,7 @@ def profits(email, senha, valor):
     # if api.check_connect():
     #     print('Já conectado')
     # else:
-    conecta(api)
+    conecta(api, balance)
     api.update_ACTIVES_OPCODE()
     for sinal in sinais:
 

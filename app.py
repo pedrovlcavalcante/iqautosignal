@@ -17,6 +17,7 @@ def home():
         session['email'] = request.form["email"]
         session['senha'] = request.form["senha"]
         session['valor'] = int(request.form["valor"])
+        session['balance'] = request.form["balance"]
         with open('sinais.txt', 'w') as lista:
             for sinal in valores.split(' '):
                 lista.write(f'{sinal}\n')
@@ -37,8 +38,9 @@ def sinal():
         email = session.get('email')
         senha = session.get('senha')
         valor = session.get('valor')
+        balance = session.get('balance')
         print("A Executar")
-        p1 = Thread(target=profits, args=[email, senha, valor])
+        p1 = Thread(target=profits, args=[email, senha, valor, balance])
         p1.start()
         print("Executado")
     return 'Oi'

@@ -44,11 +44,12 @@ def lista_sinais(texto='sinais.txt'):
     return sinais
 
 
-def conecta(api):
+def conecta(api, balance):
     check, reason = api.connect()  # connect to iqoption
     while True:
         if check:
             print('Conectado com sucessso!')
+            api.change_balance(balance)
             print(api.get_balance_mode())
             print(api.get_balance())
             break
