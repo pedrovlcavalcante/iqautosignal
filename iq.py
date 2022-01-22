@@ -49,6 +49,9 @@ def profits(email, senha, valor):
                 elif horario.diferenca <= 2:
 
                     check, id = compra(api, valor, sinal, tipo)
+                    print('Validação')
+                    print(check)
+                    print(id)
                     sinal.id = id
                     if check:
                         print("Compra realizada")
