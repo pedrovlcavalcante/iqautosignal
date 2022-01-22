@@ -62,32 +62,38 @@ def conecta(api):
 
 
 def payout(api, par, tipo, timeframe):
-    if tipo == 'binary' or tipo == 'turbo':
-        a = api.get_all_profit()
-        return int(100 * a[par][tipo])
+    try:
+        if tipo == 'binary' or tipo == 'turbo':
+            a = api.get_all_profit()
+            return int(100 * a[par][tipo])
 
-    elif tipo == 'digital':
-        api.subscribe_strike_list(par, timeframe)
-        while True:
-            d = api.get_digital_current_profit(par, timeframe)
-            if d != False:
-                d = int(d)
-                break
-        api.unsubscribe_strike_list(par, timeframe)
-        return d
+        elif tipo == 'digital':
+            api.subscribe_strike_list(par, timeframe)
+            while True:
+                d = api.get_digital_current_profit(par, timeframe)
+                if d != False:
+                    d = int(d)
+                    break
+            api.unsubscribe_strike_list(par, timeframe)
+            return d
+    except KeyError as error:
+        print(f'Não foi possível localizar o par: {error}')
 
 
 def compra(api, valor, sinal, tipo):
-    entrada = valor
-    expiration = sinal.expiracao
-    print('Excutando Sinal')
-    if tipo == 'digital':
-        check, id = api.buy_digital_spot(
-            sinal.par, entrada, sinal.direcao, expiration)
-    else:
-        check, id = api.buy(entrada, sinal.par,
-                            sinal.direcao, expiration)
-    return check, id
+    try:
+        entrada = valor
+        expiration = sinal.expiracao
+        print('Excutando Sinal')
+        if tipo == 'digital':
+            check, id = api.buy_digital_spot(
+                sinal.par, entrada, sinal.direcao, expiration)
+        else:
+            check, id = api.buy(entrada, sinal.par,
+                                sinal.direcao, expiration)
+        return check, id
+    except Exception as e:
+        print(f'Erro desconhecido: {e}')
 
 
 def martingale(api, valor, sinal, tipo):

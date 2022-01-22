@@ -17,6 +17,7 @@ def profits(email, senha, valor):
     #     print('Já conectado')
     # else:
     conecta(api)
+    api.update_ACTIVES_OPCODE()
     for sinal in sinais:
 
         print(
@@ -47,8 +48,12 @@ def profits(email, senha, valor):
                     print('Payout insuficiente, aguardando próximo sinal.')
                     break
                 elif horario.diferenca <= 2:
-
-                    check, id = compra(api, valor, sinal, tipo)
+                    try:
+                        check, id = compra(api, valor, sinal, tipo)
+                    except TypeError as e:
+                        print('ERRO NA COMPRA')
+                        print('passando para o próximo sinal')
+                        break
                     print('Validação')
                     print(check)
                     print(id)
