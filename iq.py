@@ -18,6 +18,7 @@ def profits(email, senha, valor, balance):
     # else:
     conecta(api, balance)
     api.update_ACTIVES_OPCODE()
+    inicio = api.get_balance()
     for sinal in sinais:
 
         print(
@@ -83,4 +84,11 @@ def profits(email, senha, valor, balance):
                     else:
                         print("Não foi possível comprar")
                         break
+        if ((api.get_balance() - inicio) / inicio) >= 0.05:
+            print("Objetivo diário atingido")
+            break
+        elif ((api.get_balance() - inicio) / inicio) <= 0.05:
+            print("Stop Loss diário atingido")
+            break
+
     print('Fim da Lista')
