@@ -16,13 +16,13 @@ def home():
         print(t.name)
     print(num_threads)
     if request.method == "POST":
-
+        session['balance'] = request.form["balance"]
         try:
             valores = request.form["sinal"]
             session['email'] = request.form["email"]
             session['senha'] = request.form["senha"]
             session['valor'] = int(request.form["valor"])
-            session['balance'] = request.form["balance"]
+
             session['meta'] = int(request.form["meta"])
             session['loss'] = int(request.form["loss"])
         except Exception as e:
