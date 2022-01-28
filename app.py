@@ -60,7 +60,7 @@ def sinal():
         balance = session.get('balance')
         meta = session.get('meta')
         loss = session.get('loss')
-        print(balance)
+        print('aqui na web', balance)
         print("A Executar")
         p1 = Thread(target=profits, args=[
                     email, senha, valor, balance, auto, meta, loss])
