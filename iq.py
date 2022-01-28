@@ -7,7 +7,7 @@ from os import system
 # from iqoptionapi.iqoptionapi.stable_api import IQ_Option
 
 
-def profits(email, senha, valor, balance):
+def profits(email, senha, valor, balance, auto, meta, loss):
 
     sinais = lista_sinais()
 
@@ -19,8 +19,23 @@ def profits(email, senha, valor, balance):
     conecta(api, balance)
     api.update_ACTIVES_OPCODE()
     inicio = api.get_balance()
+    print("auto", auto)
     for sinal in sinais:
+        if auto:
+            valor = 0.01*api.get_balance()
+            if valor < 2:
+                valor = 2
+        print(f'Valor do investimento: {valor}')
+        print(f'Meta: {meta}% | R$ {0.01*meta*inicio}')
+        print(f'Stop: {-loss}% | R$ {0.01*loss*inicio}')
+        # Verificação de meta diária
 
+        if ((api.get_balance() - inicio) / inicio)*100 >= meta:
+            print("Objetivo diário atingido")
+            break
+        elif ((api.get_balance() - inicio) / inicio)*100 <= -loss:
+            print("Stop Loss diário atingido")
+            break
         print(
             f'Aguardando Sinal: {sinal.par}, {sinal.hora}, {sinal.direcao}, {sinal.expiracao}')
         horario = Horario(sinal)
@@ -84,11 +99,5 @@ def profits(email, senha, valor, balance):
                     else:
                         print("Não foi possível comprar")
                         break
-        if ((api.get_balance() - inicio) / inicio) >= 0.05:
-            print("Objetivo diário atingido")
-            break
-        elif ((api.get_balance() - inicio) / inicio) <= 0.05:
-            print("Stop Loss diário atingido")
-            break
 
     print('Fim da Lista')
