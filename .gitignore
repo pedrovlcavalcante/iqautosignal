@@ -6850,3 +6850,4 @@ venv/Scripts/pythonw.exe
 venv/Scripts/symilar.exe
 venv/Scripts/wsdump.py
 venv/Scripts/__pycache__/wsdump.cpython-37.pyc
+iq.py
