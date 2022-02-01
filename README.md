@@ -1,4 +1,4 @@
-# iqautosignal
+# IQautosignal
 
 Pequeno projeto de automação de sinais que realizei a pedido de um amigo, ainda necessita de ajustes mas está funcional.
 
