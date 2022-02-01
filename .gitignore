@@ -5,3 +5,4 @@ venv/
 iq.py
 __pycache__/
 flask_session/
+sinais.txt
