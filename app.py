@@ -11,22 +11,17 @@ sess = Session()
 
 @app.route('/', methods=["POST", "GET"])
 def home():
-    num_threads = active_count()
-    for t in enumerate():
-        print(t.name)
-    print(num_threads)
+
     if request.method == "POST":
         session['balance'] = request.form["balance"]
-        try:
-            valores = request.form["sinal"]
-            session['email'] = request.form["email"]
-            session['senha'] = request.form["senha"]
-            session['valor'] = int(request.form["valor"])
 
-            session['meta'] = int(request.form["meta"])
-            session['loss'] = int(request.form["loss"])
-        except Exception as e:
-            print("ERRO NOS DADOS: ", e)
+        valores = request.form["sinal"]
+        session['email'] = request.form["email"]
+        session['senha'] = request.form["senha"]
+        session['valor'] = int(request.form["valor"])
+
+        session['meta'] = int(request.form["meta"])
+        session['loss'] = int(request.form["loss"])
         try:
             session['auto'] = request.form["auto"]
         except:
@@ -43,7 +38,7 @@ def home():
         # p1.start()
         # print("Executado")
 
-    return render_template('home.html', num_threads=num_threads)
+    return render_template('home.html')
 
 
 @app.route('/sinal', methods=["POST", "GET"])
